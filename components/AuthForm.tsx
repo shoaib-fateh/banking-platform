@@ -47,23 +47,22 @@ function AuthForm({ type }: { type: string }) {
   return (
     <section className="auth-form">
       <header className="flex flex-col gap-5 md:gap-8">
-        <Link href="/" className="flex gap-1 items-center">
+        <Link href="/" className="cursor-pointer flex items-center gap-1">
           <Image
-            src="./icons/logo.svg"
-            alt="Horizon Logo"
+            src="/icons/logo.svg"
             width={34}
             height={34}
+            alt="Horizon logo"
           />
-          <h1 className="font-26 font-ibm-plex-serif font-bold text-black-1">
+          <h1 className="text-26 font-ibm-plex-serif font-bold text-black-1">
             Horizon
           </h1>
         </Link>
 
         <div className="flex flex-col gap-1 md:gap-3">
-          <h1>
+          <h1 className="text-24 lg:text-36 font-semibold text-gray-900">
             {user ? "Link Account" : type === "sign-in" ? "Sign In" : "Sign Up"}
-
-            <p className="text-16 font-normal text-gray-900">
+            <p className="text-16 font-normal text-gray-600">
               {user
                 ? "Link your account to get started"
                 : "Please enter your details"}
@@ -71,9 +70,10 @@ function AuthForm({ type }: { type: string }) {
           </h1>
         </div>
       </header>
-
       {user ? (
-        <div className="flex flex-col gap-4"> PlaidLink </div>
+        <div className="flex flex-col gap-4">
+          {/* <PlaidLink user={user} variant="primary" /> */}
+        </div>
       ) : (
         <>
           <Form {...form}>
@@ -87,54 +87,56 @@ function AuthForm({ type }: { type: string }) {
                       label="First Name"
                       placeholder="Enter your first name"
                     />
-
                     <CustomInput
                       control={form.control}
                       name="lastName"
                       label="Last Name"
-                      placeholder="Enter your last name"
+                      placeholder="Enter your first name"
                     />
                   </div>
-
                   <CustomInput
                     control={form.control}
                     name="address1"
                     label="Address"
-                    placeholder="Enter your address"
+                    placeholder="Enter your specific address"
                   />
-
+                  <CustomInput
+                    control={form.control}
+                    name="city"
+                    label="City"
+                    placeholder="Enter your city"
+                  />
                   <div className="flex gap-4">
                     <CustomInput
                       control={form.control}
-                      name="postalCard"
-                      label="Postal Card"
-                      placeholder="Example: 11101"
-                    />
-
-                    <CustomInput
-                      control={form.control}
-                      name="sate"
+                      name="state"
                       label="State"
                       placeholder="Example: NY"
                     />
+                    <CustomInput
+                      control={form.control}
+                      name="postalCode"
+                      label="Postal Code"
+                      placeholder="Example: 11101"
+                    />
                   </div>
-
                   <div className="flex gap-4">
                     <CustomInput
                       control={form.control}
                       name="dateOfBirth"
-                      label="Date Of Birth"
-                      placeholder="YYYY-MM-NN"
+                      label="Date of Birth"
+                      placeholder="YYYY-MM-DD"
                     />
                     <CustomInput
                       control={form.control}
-                      name="snn"
-                      label="SNN"
+                      name="ssn"
+                      label="SSN"
                       placeholder="Example: 1234"
                     />
                   </div>
                 </>
               )}
+
               <CustomInput
                 control={form.control}
                 name="email"
@@ -165,17 +167,18 @@ function AuthForm({ type }: { type: string }) {
               </div>
             </form>
           </Form>
+
           <footer className="flex justify-center gap-1">
             <p className="text-14 font-normal text-gray-600">
               {type === "sign-in"
-                ? "Don't have an account? "
-                : "Already have an account? "}
+                ? "Don't have an account?"
+                : "Already have an account?"}
             </p>
             <Link
               href={type === "sign-in" ? "/sign-up" : "/sign-in"}
-              className="text-14 font-normal text-gray-600 form-link"
+              className="form-link"
             >
-              {type === "sign-in" ? "Sign Up " : "Sign In"}
+              {type === "sign-in" ? "Sign up" : "Sign in"}
             </Link>
           </footer>
         </>
